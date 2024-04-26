@@ -29,7 +29,7 @@ The steps of the algorithm are as follows:
 1. While the next element in the left side is $\leq$ the next element in the right side: just increment the pointer in the left side.
 2. While the next element in the right side is smaller than the next element in the left side: swap them.
 3. Now, we have a block of some length $k$ in the middle where all $k$ elements are from the left side and all of these $k$ elements are the smallest $k$ from the left side.
-   Now recursively merge those $k$ elements with the right side.
+   Now, recursively merge those $k$ elements with the right side.
 4. We have finished some $l$ elements, with $l\geq k$. Now, if at least $l$ elements are still in the left side: blockswap them. Otherwise rotate them with the $l$ elements.
    Those $l$ elements are now at it's final position.
 5. We have the same situation like 3., but with $l$ elements in the middle instead of $k$ elements. Continue from 3.
@@ -40,4 +40,4 @@ We can see, that the algorithm most of time does blockswapping, but in each recu
 This can be done using [this](https://www.sciencedirect.com/science/article/abs/pii/S002001900500339X) merging algorithm. But instead we use external memory of size $2\cdot\sqrt{N}$ elements + $1\cdot\sqrt{N}$ index positions.
 Because of the external memory, the algorithm becomes optimal w.r.t. the number of comparisons and the number of writes to memory falls from $3\cdot N$ to $2\cdot N$ which is nearly optimal.
 [This algorithm](https://academic.oup.com/comjnl/article-pdf/30/4/372/1068585/300372.pdf) has a very similiar memory requirement and the same number of comparisons and writes to memory, as it seems.
-It would be intersting to see, which one is faster on modern hardware and if one of them is fast enough to replace the default merging method that requires external memory for $N/2$ elements and has the same number of comparisons for all inputs like the other two mentioned above. 
+It would be interesting to see, which one is faster on modern hardware and if one of them is fast enough to replace the default merging method that requires external memory for $N/2$ elements and has the same number of comparisons for all inputs like the other two mentioned above. 
