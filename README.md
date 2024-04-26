@@ -11,6 +11,20 @@ After this, we blockswap the elements right to the median with the elements left
 This algorithm is similiar to the normal PartitionSort (a.k.a. _Leapfrogging Samplesort_) but because the first half is sorted using in-place Mergesort, we can guarantee $O(N\cdot\log_2{N})$ worst case and $\approx N\cdot\log_2{N}$ average case.
 Choosing a higher $r$ requires a higher number of swaps and a lower number of comparisons in worst case and vice versa. But all choices of $r$ guarantee a worst case of $O(N\cdot\log_2{N})$.
 
+In the following, we can see that the number of comparisons and number of writes to memory is quite low, maybe even better than an optimized HeapSort.
+We only use linear access patterns with _PartitionMergesort_, so we can assume that the algorithm will be much faster than HeapSort for large $N$ and also faster than Mergesort in average case because the partition part is a plain Quicksort.
+
+### Choosing $r=\frac{1}{2}$
+
+- Best case: $N\cdot\log_2{N}-N$ comparisons
+- Average case: less than $N\cdot\log_2{N}$ comparisons, less than $N\cdot\log_2{N}$ swaps.
+- Worst case: less than $2\cdot N\cdot\log_2{N}$ comparisons, $1\cdot N\cdot\log_2{N}$ swaps.
+
+### Choosing $r=\frac{2}{3}$
+
+- Best case: $N\cdot\log_2{N}-N$ comparisons
+- Average case: less than $N\cdot\log_2{N}$ comparisons, $\approx 1.05\cdot N\cdot\log_2{N}$ swaps.
+- Worst case: less than $1.5\cdot N\cdot\log_2{N}$ comparisons, $\approx 1.2\cdot N\cdot\log_2{N}$ swaps.
 
 ##  Rotation-based partitioning (nearly) without rotations
 
