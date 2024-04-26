@@ -6,10 +6,10 @@ We sort the first $r\cdot N$ elements using unstable in-place Mergesort that req
 We can see that this unstable in-place Mergesort can sort at most $\frac{2}{3}\cdot N$ elements without extra tricks.
 
 After we have sorted the first $r\cdot N$ elements, we take the middle element of the sorted elements (the median) and partition the remaining elements according to this pivot element.
-After this we block swap the elements right to the median with the elements left of the side that was partitioned.
+After this, we blockswap the elements right to the median with the elements left of the side that was partitioned.
 
-This algorithm is similiar to the normal PartitionSort but because the first part was sorted using in-place Mergesort, we can guarantee $O(N\cdot\log_2{N})$ worst case and $\approx N\cdot\log_2{N}$ average case.
-Choosing a higher $r$ requires a higher number of swaps and a lower number of comparisons in worst case and vice versa.
+This algorithm is similiar to the normal PartitionSort (a.k.a. _Leapfrogging Samplesort_) but because the first half is sorted using in-place Mergesort, we can guarantee $O(N\cdot\log_2{N})$ worst case and $\approx N\cdot\log_2{N}$ average case.
+Choosing a higher $r$ requires a higher number of swaps and a lower number of comparisons in worst case and vice versa. But all choices of $r$ guarantee a worst case of $O(N\cdot\log_2{N})$.
 
 
 ##  Rotation-based partitioning (nearly) without rotations
@@ -43,7 +43,7 @@ The steps of the algorithm are as follows:
 3. Now, we have a block of some length $k$ in the middle where all $k$ elements are from the left side and all of these $k$ elements are the smallest $k$ from the left side.
    Now, recursively merge those $k$ elements with the right side.
 4. We have finished some $l$ elements, with $l\geq k$. Now, if at least $l$ elements are still in the left side: blockswap them. Otherwise rotate them with the $l$ elements.
-   Those $l$ elements are now at it's final position.
+   Those $l$ elements are now at its final position.
 5. We have the same situation like 3., but with $l$ elements in the middle instead of $k$ elements. Continue from 3.
 
 We can see, that the algorithm most of time does blockswapping, but in each recursion, when not enough elements are left, it requires a rotation.
