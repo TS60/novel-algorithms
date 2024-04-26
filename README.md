@@ -62,6 +62,21 @@ The steps of the algorithm are as follows:
 
 We can see, that the algorithm most of time does blockswapping, but in each recursion, when not enough elements are left, it requires a rotation.
 
+## In-place Mergesort with the optimal number of comparisons
+- Choose the unstable in-place Mergesort that can sort $r\cdot N$ elements with $r\geq\frac{1}{2}$ and $r\leq\frac{2}{3}$.
+- Choose $r=\frac{1}{2}$ and sort the first half of the input.
+- Using the same method, sort the third quarter.
+- Using a recusive call, sort the fourth quarter.
+- Merge the third and the fourth quarter using _RecTapeMerge_.
+- Merge the first half and the second half using _RecTapeMerge_.
+
+Since _RecTapeMerge_ has the optimal number of comparisons and we merge $N + \frac{N}{2} + \frac{N}{4} + \frac{N}{8} + \dots$,
+we get the following number of comparisons and swaps:
+
+- Best case: $N\cdot\log_2{N}-N$ comparisons
+- Average case: $N\cdot\log_2{N}-N$ comparisons, less than $2\cdot N\cdot\log_2{N}$ swaps.
+- Worst case: $N\cdot\log_2{N}-N$ comparisons, $2\cdot N\cdot\log_2{N}$ swaps.
+
 ## Merging with $O(\sqrt{N})$ memory and the optimal number of comparisons
 This can be done using [this](https://www.sciencedirect.com/science/article/abs/pii/S002001900500339X) merging algorithm. But instead we use external memory of size $2\cdot\sqrt{N}$ elements + $1\cdot\sqrt{N}$ index positions.
 Because of the external memory, the algorithm becomes optimal w.r.t. the number of comparisons and the number of writes to memory falls from $3\cdot N$ to $2\cdot N$ which is nearly optimal.
