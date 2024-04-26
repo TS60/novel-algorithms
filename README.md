@@ -1,5 +1,17 @@
 # Novel Algorithms
 
+## PartitionMergesort
+
+We sort the first $r\cdot N$ elements using unstable in-place Mergesort that requires an internal buffer of size $m$ to merge $m$ and $n$ elements where $m\leq n$ and $r\geq\frac{1}{2}$ and $r\leq\frac{2}{3}$.
+We can see that this unstable in-place Mergesort can sort at most $\frac{2}{3}\cdot N$ elements without extra tricks.
+
+After we have sorted the first $r\cdot N$ elements, we take the middle element of the sorted elements (the median) and partition the remaining elements according to this pivot element.
+After this we block swap the elements right to the median with the elements left of the side that was partitioned.
+
+This algorithm is similiar to the normal PartitionSort but because the first part was sorted using in-place Mergesort, we can guarantee $O(N\cdot\log_2{N})$ worst case and $\approx N\cdot\log_2{N}$ average case.
+Choosing a higher $r$ requires a higher number of swaps and a lower number of comparisons in worst case and vice versa.
+
+
 ##  Rotation-based partitioning (nearly) without rotations
 
 Algorithms like the recursive stable in-place merging algorithms like RecMerge and [Symmerge](http://itbe.hanyang.ac.kr/ak/papers/esa2004.pdf), and recursive stable in-place [partitioning](https://en.cppreference.com/w/cpp/algorithm/stable_partition) algorithms use [rotations](https://github.com/scandum/rotate) to bring the elements in the correct side.
