@@ -6,7 +6,7 @@ Algorithms like the recursive stable in-place merging algorithms like RecMerge a
 
 Instead of rotations, we can use blockswapping of the shorter side with the longer to solve the task. The longer side will then stay in a rotated state. We can just store the index of this rotation state.
 In the next recursion, we repeat this with the index in mind. Both sides will never have more than one rotated state. Using this method, we can reduce the number of swaps by factor two.
-In the last recursion where one side has length 0 and the other side is in a rotated state, we have to make one real rotation. This is the only place. We can use the simple triple rotation to finish this.
+In the last recursion where one side has length 0 and the other side is in a rotated state, we have to make one real rotation. This is the only place. We can use the simple triple reversal to finish this.
 
 ### Example
 ```
