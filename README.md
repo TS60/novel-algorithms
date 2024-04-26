@@ -1,4 +1,4 @@
-# Algorithms
+# Novel Algorithms
 
 ##  Rotation-based partitioning (nearly) without rotations
 
