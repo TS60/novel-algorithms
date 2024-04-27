@@ -29,6 +29,13 @@ We only use linear access patterns with _PartitionMergesort_, so we can assume t
 - Average case: less than $N\cdot\log_2{N}$ comparisons, $\approx 1.05\cdot N\cdot\log_2{N}$ swaps.
 - Worst case: less than $1.5\cdot N\cdot\log_2{N}$ comparisons, $\approx 1.2\cdot N\cdot\log_2{N}$ swaps.
 
+### Choosing Quicksort
+As a comparisons, here is the behaviour of Quicksort
+
+- Best case: $N\cdot\log_2{N}$ comparisons, 0 swaps
+- Average case: $1.39\cdot N\cdot\log_2{N}$ comparisons, $\frac{1}{4}\cdot N\cdot\log_2{N}$ swaps.
+- Worst case: $\frac{N\cdot (N+1)}{2}$ comparisons, $\frac{1}{2}\cdot N\cdot\log_2{N}$ swaps.
+
 ##  Rotation-based partitioning (nearly) without rotations
 
 Algorithms like the recursive stable in-place merging algorithms like RecMerge and [Symmerge](http://itbe.hanyang.ac.kr/ak/papers/esa2004.pdf), and recursive stable in-place [partitioning](https://en.cppreference.com/w/cpp/algorithm/stable_partition) algorithms use [rotations](https://github.com/scandum/rotate) to bring the elements in the correct side.
