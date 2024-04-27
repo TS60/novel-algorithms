@@ -15,12 +15,15 @@ In the following, we can see that the number of comparisons and number of writes
 We only use linear access patterns with _PartitionMergesort_, so we can assume that the algorithm will be much faster than HeapSort for large $N$ and also faster than Mergesort in average case because the partition part is a plain Quicksort.
 
 ### Choosing $r=\frac{1}{2}$
++ $\tfrac{1}{2}$ of the sorting is done by Mergesort and $\tfrac{1}{2}$ by Quicksort
+
 
 - Best case: $N\cdot\log_2{N}-N$ comparisons
 - Average case: less than $N\cdot\log_2{N}$ comparisons, less than $N\cdot\log_2{N}$ swaps.
 - Worst case: less than $2\cdot N\cdot\log_2{N}$ comparisons, $1\cdot N\cdot\log_2{N}$ swaps.
 
 ### Choosing $r=\frac{2}{3}$
++ $\tfrac{2}{3}$ of the sorting is done by Mergesort and $\tfrac{1}{3}$ by Quicksort
 
 - Best case: $N\cdot\log_2{N}-N$ comparisons
 - Average case: less than $N\cdot\log_2{N}$ comparisons, $\approx 1.05\cdot N\cdot\log_2{N}$ swaps.
