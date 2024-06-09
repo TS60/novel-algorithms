@@ -54,7 +54,16 @@ Applying this idea to the partitioning algorithm, is not too difficult, but appl
 It is more difficult to binary search in such a rotated block. We can see that if we always keep one side in one block, we can always binary search in this side. Thus, the binary search will be the same and the complexity of implementing is not much higher than before.
 
 ### The same idea applied to an other algorithm
-The same idea can probably also be applied to the merging methods that require _block rearrangement_, like [this one](https://academic.oup.com/comjnl/article-pdf/30/4/372/1068585/300372.pdf) and others. We can then already merge blocks when they are still in out-of-order state and delay the block rearrangement to the very last step when we really need the blocks to be in sorted order. 
+The same idea can also be applied to the merging methods that require _block rearrangement_, like [this one](https://academic.oup.com/comjnl/article-pdf/30/4/372/1068585/300372.pdf) and others. We can then already merge blocks when they are still in out-of-order state and delay the block rearrangement to the very last step when we really need the blocks to be in sorted order.
+For a Mergesort this would mean:
+- Merge two inputs where both inputs already have out-of-order blocks that normally would be rearranged. The very first step does not has out-of-order blocks.
+- In the last step of Mergesort where each input has length $\frac{N}{2}$, we repeat the merge one last time.
+- We now have a completely sorted input but it is still in blocks of same size that are not in order.
+- This is the first and only time where we do the rearrangement.
+- This results in $\approx N\cdot\log_2{N}+N$ memory reads and writes and $N\cdot\log_2{N}-N$ comparisons. The default Mergesort with $\frac{N}{2}$ extra memory requires $\approx \frac{3}{2}\cdot N\cdot\log_2{N}$ memory reads and writes and $N\cdot\log_2{N}-N$ comparisons.
+
+The extra cost of the proposed method are some extra cache misses (but limited due to the block size) and extra branches.
+Due to the reduced number of memory reads and writes and the lower number of external memory, it could be of high practical relevance.
 
 ## Merging with $O(\log_2{N})$ memory and the optimal number of comparisons
 This novel algorithm is a recursive variant of the normal tape merge algorithm, thus, I call it _RecTapeMerge_. It's a little bit faster than RecMerge and Symmerge and for very big inputs it's even more faster. It's always slower than the normal tape merge, though.
