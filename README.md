@@ -1,5 +1,18 @@
 # Novel Algorithms
 
+## Training a Neural Network in constant time for an arbitrary amount of training data
+(this seems to be a novel algorithm as indicated in the comments [here](https://ai.stackexchange.com/questions/46122/downsides-of-training-a-neural-network-in-constant-time))
+
+- Instead of the normal pipeline (collect all training data, train a model with all of the training data) that will take weeks or months to train for big data,
+  we collect the training data into a database like a graph database or into a file database like LMDB.
+- We do _not_ train the model on this large training data.
+- Now, in the inference phase, for example when translating a sentence from one language to an other, we retrieve a constant relevant amount of training data from the huge database.
+- After this, train a model using slow state-of-the-art solutions and the retrieved data. It is also possible to retrieve another constant amount of general data not related to the input, to better learn the general concept.
+- Now, do the inference on this trained model.
+- We now have a very fast first training phase because we only have to store the training data into the database.
+- The inference phase will be much slower because we have to train a model each time, but the inference time will still be acceptable (10 seconds to 10 minutes, unclear) due to the constant amount limitation (similiar to Insertion Sort is slow for large $N$ but the fastest for small $N$).
+- **This approach makes big data Machine Learning practical for normal users.**
+
 ## PartitionMergesort
 
 We sort the first $r\cdot N$ elements using unstable in-place Mergesort that requires an internal buffer of size $m$ to merge $m$ and $n$ elements where $m\leq n$ and $r\geq\frac{1}{2}$ and $r\leq\frac{2}{3}$.
